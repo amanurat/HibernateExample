@@ -11,6 +11,7 @@
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
         <!--<property name="format_sql">true</property>-->
         <!--<property name="hbm2ddl.auto">create-drop</property>-->
 
@@ -37,6 +38,8 @@
         <mapping resource="mapping/Course.hbm.xml"/>
         <mapping resource="mapping/Category.hbm.xml"/>
         -->
+
+        <mapping resource="mapping/Student.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>
