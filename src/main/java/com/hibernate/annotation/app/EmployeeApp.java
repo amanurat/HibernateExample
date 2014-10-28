@@ -1,3 +1,5 @@
+package com.hibernate.annotation.app;
+
 import com.hibernate.annotation.entity.Department;
 import com.hibernate.annotation.entity.Employee;
 import com.hibernate.annotation.util.PrePersistIntercepter;
@@ -9,12 +11,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.SimpleFormatter;
 
 /**
  * User: assanai.manurat

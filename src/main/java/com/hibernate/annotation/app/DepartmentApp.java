@@ -1,3 +1,5 @@
+package com.hibernate.annotation.app;
+
 import com.hibernate.annotation.entity.Department;
 import com.hibernate.annotation.entity.Employee;
 import org.hibernate.Session;
