@@ -9,7 +9,7 @@ import java.util.List;
  * Time: 2:55 PM
  */
 @Entity
-
+@NamedQuery(name = "department.findByName()", query = "from Department")
 public class Department {
 
     @Id
