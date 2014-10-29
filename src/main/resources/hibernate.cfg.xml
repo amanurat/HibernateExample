@@ -16,12 +16,13 @@
         <!--<property name="hbm2ddl.auto">create-drop</property>-->
 
 
-<!--        <mapping class="com.hibernate.annotation.entity.Employee"/>
-        <mapping class="com.hibernate.annotation.entity.Department"/>-->
+        <!--
+        <mapping class="com.hibernate.annotation.entity.Employee"/>
+        <mapping class="com.hibernate.annotation.entity.Department"/>
+        -->
 
         <!--
         <mapping class="com.hibernate.annotation.entity.Student"/>
-        <mapping class="com.hibernate.annotation.entity.Course"/>
         <mapping class="com.hibernate.annotation.entity.Address"/>
         <mapping class="com.hibernate.annotation.entity.StudentInformation"/>
 
@@ -30,16 +31,9 @@
         -->
 
 
-        <!-- For XML Mapping Style -->
-        <!--
-        <mapping resource="mapping/Stock.hbm.xml"/>
+        <mapping resource="mapping/Student.hbm.xml"/>
         <mapping resource="mapping/Employee.hbm.xml"/>
-        <mapping resource="mapping/Student.hbm.xml"/>
-        <mapping resource="mapping/Course.hbm.xml"/>
-        <mapping resource="mapping/Category.hbm.xml"/>
-        -->
-
-        <mapping resource="mapping/Student.hbm.xml"/>
+        <mapping resource="mapping/Department.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

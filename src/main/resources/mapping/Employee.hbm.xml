@@ -8,16 +8,30 @@
             This class contains the employee detail.
         </meta>
 
-        <id name="id" type="long" column="id">
+        <id name="id" type="integer" column="EMPLOYEE_ID">
             <generator class="native"/>
         </id>
         <property name="firstName" column="first_name" type="string"/>
         <property name="lastName" column="last_name" type="string"/>
         <property name="salary" column="salary" type="int"/>
 
-        <set name="accountList" table="ACCOUNT" cascade="all">
-            <key column="STUDENT_ID" />
-            <one-to-many class="com.hibernate.annotation.entity.Account" />
-        </set>
+        <many-to-one name="department" column="DEPARTMENT_ID" fetch="join"/>
+
+
+
     </class>
+
+    <query name="findEmployeeWithNameQueryById">
+        <![CDATA[from Department d where d.id = :ID]]>
+    </query>
+
+    <query name="findAllDepartmentWithNameQuery">
+        <![CDATA[from Department]]>
+    </query>
+
+    <sql-query name="findDepartmentWithNativeSQLById">
+        <return alias="department" class="com.hibernate.annotation.entity.Employee"/>
+        <![CDATA[SELECT * FROM DEPARTMENT D WHERE D.DEPARTMENT_ID = :ID]]>
+    </sql-query>
+
 </hibernate-mapping>
