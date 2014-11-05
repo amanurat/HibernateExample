@@ -17,10 +17,10 @@ public class Department {
     @Column(name = "DEPARTMENT_ID")
     private Integer id;
 
-    @Column(name = "DEPARTMENT_NAME")
+    @Column(name = "DEPARTMENT_NAME", unique = true)
     private String departmentName;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", cascade = CascadeType.REMOVE)
     private List<Employee> employeeList;
 
     public Department() {}
