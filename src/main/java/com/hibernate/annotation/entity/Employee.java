@@ -1,9 +1,6 @@
 package com.hibernate.annotation.entity;
 
-import org.hibernate.annotations.*;
-
 import javax.persistence.*;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -77,6 +74,11 @@ public class Employee {
 
     public Employee() {
 
+    }
+
+    public Employee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Employee(String firstName, String lastName, Integer salary, Integer age, String phoneNumber, Integer sex, String position, Date birthDate, String email, String address) {
