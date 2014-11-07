@@ -27,11 +27,12 @@ public class DepartmentApp {
 
 //        new SchemaExport(configure).create(true, true);
 
+//        Session session = sessionFactory.openSession();
+//        Transaction transaction = session.beginTransaction();
+//        transaction.begin();
+
+
         Session session = sessionFactory.openSession();
-
-        Transaction transaction = session.beginTransaction();
-        transaction.begin();
-
 
         Department department = (Department) session.get(Department.class, 1);
 
@@ -47,7 +48,7 @@ public class DepartmentApp {
 //        session.save(new Department("HR"));
 
 
-        transaction.commit();
+//        transaction.commit();
         session.close();
     }
 }

@@ -28,16 +28,16 @@ public class EmployeeApp {
         Configuration configure = new Configuration().configure();
         sessionFactory =
                 configure.addAnnotatedClass(Employee.class)
-                .addAnnotatedClass(Department.class)
-                .setInterceptor(new PrePersistIntercepter())
-                .buildSessionFactory();
+                        .addAnnotatedClass(Department.class)
+                        .setInterceptor(new PrePersistIntercepter())
+                        .buildSessionFactory();
 
         new SchemaExport(configure).create(true, true);
     }
 
     public static void main(String args[]) throws Exception {
         EmployeeApp app = new EmployeeApp();
-        app.insert();
+//        app.insert();
 //        app.update(1);
 //        app.delete(1);
 //        app.getByPk();
@@ -81,37 +81,37 @@ public class EmployeeApp {
     private void queryByNativeSQL() {
         Session session = sessionFactory.openSession();
 
-/*        String sql = "select * from EMPLOYEE where FIRST_NAME = :firstName ";
+        String sql = "select * from EMPLOYEE where FIRST_NAME = :firstName ";
 
         List<Employee> employeeList = session.createSQLQuery(sql)
                 .addEntity(Employee.class)
                 .setParameter("firstName", "Damian")
                 .list();
         System.out.println("employList : "+ employeeList);
-        display(employeeList);*/
+        display(employeeList);
 
 
     }
 
-    private void queryWithCriteriaByMap(Map<String,Object> criteriaMap) {
+    private void queryWithCriteriaByMap(Map<String, Object> criteriaMap) {
         Session session = sessionFactory.openSession();
         Criteria criteria = session.createCriteria(Employee.class);
 
         for (Map.Entry<String, Object> entry : criteriaMap.entrySet()) {
-                String key = (String) entry.getKey();
-                criteria.add(Restrictions.eq(key, entry.getValue()));
+            String key = (String) entry.getKey();
+            criteria.add(Restrictions.eq(key, entry.getValue()));
         }
 
         List<Employee> restrictionsList = criteria.list();
         display(restrictionsList);
     }
 
-    private void delete(Integer id) throws Exception{
+    private void delete(Integer id) throws Exception {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         transaction.begin();
 
-        Employee employee = (Employee)session.get(Employee.class, id);
+        Employee employee = (Employee) session.get(Employee.class, id);
         session.delete(employee);
 
         transaction.commit();
@@ -124,10 +124,10 @@ public class EmployeeApp {
         Transaction transaction = session.beginTransaction();
         transaction.begin();
 
-        Employee john = new Employee("John", "Sutton", 200000, 20, "08912345678", 0, "Director", new Date(),"john@gmail.com", "USA");
+        Employee john = new Employee("John", "Sutton", 200000, 20, "08912345678", 0, "Director", new Date(), "john@gmail.com", "USA");
         john.setDepartment(new Department("IT"));
 
-        Employee damian = new Employee("Damian", "Sutton", 100000, 20, "08187654321", 0, "Manager", new Date(),"damian@gmail.com", "Bangkok");
+        Employee damian = new Employee("Damian", "Sutton", 100000, 20, "08187654321", 0, "Manager", new Date(), "damian@gmail.com", "Bangkok");
         damian.setDepartment(new Department("HR"));
 
         session.save(john);
@@ -141,16 +141,17 @@ public class EmployeeApp {
 
     /**
      * Find Employee By Primary Key
+     *
      * @throws Exception
      */
     public void getByPk() throws Exception {
         Session session = sessionFactory.openSession();
-        Employee employee = (Employee)session.get(Employee.class, 1);
-        System.out.println("Employee first name is : "+ employee.getFirstName());
-        System.out.println("Employee last name is : "+ employee.getLastName());
+        Employee employee = (Employee) session.get(Employee.class, 1);
+        System.out.println("Employee first name is : " + employee.getFirstName());
+        System.out.println("Employee last name is : " + employee.getLastName());
 
         String departmentName = employee.getDepartment().getDepartmentName();
-        System.out.println("departmentName : "+ departmentName);
+        System.out.println("departmentName : " + departmentName);
         session.close();
     }
 
@@ -160,6 +161,7 @@ public class EmployeeApp {
         display(employeeList);
         session.close();
     }
+
     public void queryHQLByFirstName() throws Exception {
         Session session = sessionFactory.openSession();
         List<Employee> employeeList = session.createQuery("from Employee e where e.firstName = 'John'").list();
@@ -169,6 +171,7 @@ public class EmployeeApp {
 
     /**
      * Query By Criteria all list
+     *
      * @throws Exception
      */
     public void queryWithCriteria() throws Exception {
@@ -183,7 +186,7 @@ public class EmployeeApp {
             Integer id = employeeModel.getId();
             String firstName = employeeModel.getFirstName();
             String lastName = employeeModel.getLastName();
-            System.out.println("ID: "+ id + ", First Name : "+ firstName +", Last Name : "+lastName);
+            System.out.println("ID: " + id + ", First Name : " + firstName + ", Last Name : " + lastName);
         }
     }
 
@@ -196,12 +199,13 @@ public class EmployeeApp {
                 .add(Restrictions.eq("firstName", firstName))
                 .add(Restrictions.eq("address", address))
                 .list();
-       display(restrictionsList);
+        display(restrictionsList);
         session.close();
     }
 
     /**
      * Update Employee
+     *
      * @throws Exception
      */
     public void update(Integer id) throws Exception {
