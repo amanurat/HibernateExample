@@ -3,10 +3,7 @@ package com.hibernate.app;
 import com.hibernate.annotation.entity.Department;
 import com.hibernate.annotation.entity.Employee;
 import com.hibernate.annotation.util.PrePersistIntercepter;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
@@ -26,9 +23,10 @@ public class EmployeeApp {
 
     public EmployeeApp() {
         Configuration configure = new Configuration().configure();
-        sessionFactory = configure.addAnnotatedClass(Employee.class)
-                        .addAnnotatedClass(Department.class)
+        sessionFactory = configure
                         .setInterceptor(new PrePersistIntercepter())
+                        .addAnnotatedClass(Employee.class)
+                        .addAnnotatedClass(Department.class)
                         .buildSessionFactory();
 
         new SchemaExport(configure).create(true, true);
@@ -36,7 +34,7 @@ public class EmployeeApp {
 
     public static void main(String args[]) throws Exception {
         EmployeeApp app = new EmployeeApp();
-//        app.insert();
+        app.insert();
 //        app.update(1);
 //        app.delete(1);
 //        app.getByPk();
@@ -53,7 +51,17 @@ public class EmployeeApp {
         app.queryWithCriteriaByMap(map);*/
 
 //        app.queryWithNameQuery();
+          app.queryWithNativeQuery();
 //        app.queryWithNameQueryByFirstName("Damian");
+
+    }
+
+    private void queryWithNativeQuery() {
+        Session session = sessionFactory.openSession();
+        Query query = session.getNamedQuery("employee.findById.native");
+        query.setInteger("ID", 1);
+        List result = query.list();
+        System.out.println(result);
 
     }
 
@@ -132,6 +140,11 @@ public class EmployeeApp {
         session.save(john);
 
         session.save(damian);
+
+        for (int i = 1; i < 10; i++) {
+            session.save(new Employee("FirstName" + i, "LastName" + i));
+        }
+
 
         transaction.commit();
 

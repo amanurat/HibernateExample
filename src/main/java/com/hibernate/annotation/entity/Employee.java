@@ -16,8 +16,17 @@ import java.util.Date;
 @Table(name = "EMPLOYEE")
 @NamedQuery(name = "employee.findAll", query ="from Employee")
 @NamedQueries({
-        @NamedQuery(name = "employee.findBydId", query = "from Employee where id = :ID"),
+        @NamedQuery(name = "employee.findById", query = "from Employee where id = :ID"),
         @NamedQuery(name = "employee.findByFirstName", query = "from Employee where firstName = :FIRST_NAME")})
+
+
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "employee.findById.native",
+                query = "select * from EMPLOYEE e where e.EMPLOYEE_ID = :ID",
+                resultClass = Employee.class
+        )
+})
 public class Employee {
 
     @Id

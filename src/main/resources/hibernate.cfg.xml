@@ -30,9 +30,9 @@
         -->
 
 
-        <mapping resource="mapping/Student.hbm.xml"/>
+        <!--<mapping resource="mapping/Student.hbm.xml"/>
         <mapping resource="mapping/Employee.hbm.xml"/>
-        <mapping resource="mapping/Department.hbm.xml"/>
+        <mapping resource="mapping/Department.hbm.xml"/>-->
 
     </session-factory>
 </hibernate-configuration>
