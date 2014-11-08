@@ -3,6 +3,7 @@ package com.hibernate.annotation.entity;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.classic.Session;
@@ -26,7 +27,7 @@ public class DepartmentHibernateTest {
     @Before
     public void setup() throws Exception {
 
-//        new SchemaExport(config).create(true, true);
+        new SchemaExport(config).create(true, true);
 
         session = sessionFactory.openSession();
     }
@@ -62,5 +63,31 @@ public class DepartmentHibernateTest {
         List<Department> DepartmentList = session.createCriteria(Department.class).list();
 
         System.out.println("Total of Department : "+ DepartmentList);
+    }
+
+    @Test
+    public void testHQLNameQuery() throws Exception {
+
+        List<Department> departments = session.getNamedQuery("GET_ALL_DEPARTMENT").list();
+        System.out.println(departments);
+
+        Query namedQuery = session.getNamedQuery("GET_DEPARTMENT_BY_ID");
+        namedQuery.setInteger("ID", 1);
+
+        Department department = (Department) namedQuery.list().get(0);
+        System.out.println(department);
+
+    }
+
+    @Test
+    public void testSQLNameQuery() throws Exception {
+
+        Query query = session.getNamedQuery("GET_DEPARTMENT_BY_ID_NATIVE");
+        query.setInteger("ID", 1);
+
+        Department department    = (Department) query.list().get(0);
+        System.out.println(department);
+        System.out.println(department.getDepartmentName());
+
     }
 }

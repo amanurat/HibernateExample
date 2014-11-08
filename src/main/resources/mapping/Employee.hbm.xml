@@ -17,10 +17,10 @@
 
         <many-to-one name="department" column="DEPARTMENT_ID" fetch="join"/>
 
-        <query name="findEmployeeByFirstName">
-            <![CDATA[from Employee emp where emp.firstName = :firstName]]>
-        </query>
-
     </class>
+
+    <query name="findEmployeeByFirstName">
+        <![CDATA[from Employee emp where emp.firstName = :firstName]]>
+    </query>
 
 </hibernate-mapping>

@@ -11,14 +11,14 @@
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
+        <!--<property name="hbm2ddl.auto">update</property>-->
         <!--<property name="format_sql">true</property>-->
         <!--<property name="hbm2ddl.auto">create-drop</property>-->
 
 
-        <mapping class="com.hibernate.annotation.entity.Employee"/>
+       <!-- <mapping class="com.hibernate.annotation.entity.Employee"/>
         <mapping class="com.hibernate.annotation.entity.Department"/>
-        <mapping class="com.hibernate.annotation.entity.Student"/>
+        <mapping class="com.hibernate.annotation.entity.Student"/>-->
 
         <!--
         <mapping class="com.hibernate.annotation.entity.Student"/>
@@ -30,9 +30,9 @@
         -->
 
 
-<!--        <mapping resource="mapping/Student.hbm.xml"/>
+        <mapping resource="mapping/Student.hbm.xml"/>
         <mapping resource="mapping/Employee.hbm.xml"/>
-        <mapping resource="mapping/Department.hbm.xml"/>-->
+        <mapping resource="mapping/Department.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

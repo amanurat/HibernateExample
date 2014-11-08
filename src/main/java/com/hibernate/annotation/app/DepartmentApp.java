@@ -35,14 +35,7 @@ public class DepartmentApp {
         Session session = sessionFactory.openSession();
 
         Department department = (Department) session.get(Department.class, 1);
-
-        List<Employee> employeeList = department.getEmployeeList();
-
-        System.out.println("Total employee of id[1] >> "+employeeList.size());
-
-        for(Employee employee : employeeList) {
-            System.out.println("Employee ID: "+ employee.getId() + " Employee First Name : "+ employee.getFirstName());
-        }
+        System.out.println("Department [id = "+ department.getId() + ", name = " + department.getDepartmentName() + "]");
 
 //        session.save(new Department("IT"));
 //        session.save(new Department("HR"));
