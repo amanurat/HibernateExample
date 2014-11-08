@@ -1,4 +1,4 @@
-package com.hibernate.annotation.app;
+package com.hibernate.app;
 
 import com.hibernate.annotation.entity.Department;
 import com.hibernate.annotation.entity.Employee;

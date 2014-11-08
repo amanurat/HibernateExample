@@ -1,15 +1,10 @@
-package com.hibernate.annotation.app;
+package com.hibernate.app;
 
 import com.hibernate.annotation.entity.Department;
 import com.hibernate.annotation.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * User: assanai.manurat
