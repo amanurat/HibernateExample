@@ -21,6 +21,21 @@
             <one-to-many class="com.hibernate.annotation.entity.Employee" />
         </bag>
 
+
+        <query name="findDepartmentWithNameQueryById">
+            <![CDATA[from Department d where d.id = :ID]]>
+        </query>
+
+        <query name="findAllDepartmentWithNameQuery">
+            <![CDATA[from Department]]>
+        </query>
+
+        <sql-query name="findDepartmentWithNativeSQLById">
+            <return alias="department" class="com.hibernate.annotation.entity.Department"/>
+            <![CDATA[SELECT * FROM DEPARTMENT D WHERE D.DEPARTMENT_ID = :ID]]>
+        </sql-query>
+
+
     </class>
 
 </hibernate-mapping>

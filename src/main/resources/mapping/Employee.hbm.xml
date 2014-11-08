@@ -17,21 +17,10 @@
 
         <many-to-one name="department" column="DEPARTMENT_ID" fetch="join"/>
 
-
+        <query name="findEmployeeByFirstName">
+            <![CDATA[from Employee emp where emp.firstName = :firstName]]>
+        </query>
 
     </class>
-
-    <query name="findEmployeeWithNameQueryById">
-        <![CDATA[from Department d where d.id = :ID]]>
-    </query>
-
-    <query name="findAllDepartmentWithNameQuery">
-        <![CDATA[from Department]]>
-    </query>
-
-    <sql-query name="findDepartmentWithNativeSQLById">
-        <return alias="department" class="com.hibernate.annotation.entity.Employee"/>
-        <![CDATA[SELECT * FROM DEPARTMENT D WHERE D.DEPARTMENT_ID = :ID]]>
-    </sql-query>
 
 </hibernate-mapping>
