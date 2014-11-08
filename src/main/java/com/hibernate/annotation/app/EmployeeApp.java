@@ -26,8 +26,7 @@ public class EmployeeApp {
 
     public EmployeeApp() {
         Configuration configure = new Configuration().configure();
-        sessionFactory =
-                configure.addAnnotatedClass(Employee.class)
+        sessionFactory = configure.addAnnotatedClass(Employee.class)
                         .addAnnotatedClass(Department.class)
                         .setInterceptor(new PrePersistIntercepter())
                         .buildSessionFactory();

@@ -17,7 +17,7 @@ import org.junit.Test;
  * Date: 4/10/2014
  * Time: 2:56 PM
  */
-public class EmployeeHibernateXMLMappingTest {
+public class DepartmentHibernateTest {
 
     private Configuration config = new Configuration();
     private SessionFactory sessionFactory = config.configure().buildSessionFactory();
@@ -26,7 +26,7 @@ public class EmployeeHibernateXMLMappingTest {
     @Before
     public void setup() throws Exception {
 
-        new SchemaExport(config).create(true, true);
+//        new SchemaExport(config).create(true, true);
 
         session = sessionFactory.openSession();
     }
@@ -51,9 +51,10 @@ public class EmployeeHibernateXMLMappingTest {
 
     @Test
     public void testGetDepartment() throws Exception {
-        Department Department  = (Department) session.get(Department.class, 1);
-        System.out.println("Department : "+ Department);
-        System.out.println("name : " + Department.getDepartmentName());
+        Department department  = (Department) session.get(Department.class, 1);
+
+        System.out.println("department : "+ department);
+        System.out.println("name : " + department.getDepartmentName());
     }
 
     @Test

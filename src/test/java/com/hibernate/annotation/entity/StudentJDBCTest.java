@@ -27,7 +27,7 @@ public class StudentJDBCTest {
 		listAllStudent();
 
 		System.out.println("Goodbye!");
-	}// end main
+	}
 
 	private static void insertStudent() {
 
