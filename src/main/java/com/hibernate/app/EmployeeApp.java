@@ -7,6 +7,8 @@ import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.List;
@@ -18,6 +20,9 @@ import java.util.Map;
  * Time: 1:55 PM
  */
 public class EmployeeApp {
+
+
+    static Logger LOG = LoggerFactory.getLogger(EmployeeApp.class);
 
     private static SessionFactory sessionFactory;
 
@@ -33,6 +38,9 @@ public class EmployeeApp {
     }
 
     public static void main(String args[]) throws Exception {
+
+        LOG.debug("*** Test Log4j ***");
+
         EmployeeApp app = new EmployeeApp();
         app.insert();
 //        app.update(1);

@@ -11,6 +11,8 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -20,21 +22,30 @@ import org.junit.Test;
  */
 public class DepartmentHibernateTest {
 
+
+    Logger LOG = LoggerFactory.getLogger(getClass());
+
+
     private Configuration config = new Configuration();
-    private SessionFactory sessionFactory = config.configure().buildSessionFactory();
+    private SessionFactory sessionFactory = config.configure()
+            .addAnnotatedClass(Employee.class)
+            .addAnnotatedClass(Department.class).buildSessionFactory();
+
+
     private Session session;
 
     @Before
     public void setup() throws Exception {
 
-        new SchemaExport(config).create(true, true);
+        LOG.debug("*** Setup ***");
+//        new SchemaExport(config).create(true, true);
 
         session = sessionFactory.openSession();
     }
 
     @After
     public void tearDown() throws Exception {
-       session.close();
+        session.close();
     }
 
     @Test
@@ -52,9 +63,10 @@ public class DepartmentHibernateTest {
 
     @Test
     public void testGetDepartment() throws Exception {
-        Department department  = (Department) session.get(Department.class, 1);
+        Department department = (Department) session.get(Department.class, 1);
 
-        System.out.println("department : "+ department);
+        LOG.debug("TESTXXXX");
+        System.out.println("department : " + department);
         System.out.println("name : " + department.getDepartmentName());
     }
 
@@ -62,7 +74,7 @@ public class DepartmentHibernateTest {
     public void testGetAllDepartment() throws Exception {
         List<Department> DepartmentList = session.createCriteria(Department.class).list();
 
-        System.out.println("Total of Department : "+ DepartmentList);
+        System.out.println("Total of Department : " + DepartmentList);
     }
 
     @Test
@@ -85,7 +97,7 @@ public class DepartmentHibernateTest {
         Query query = session.getNamedQuery("GET_DEPARTMENT_BY_ID_NATIVE");
         query.setInteger("ID", 1);
 
-        Department department    = (Department) query.list().get(0);
+        Department department = (Department) query.list().get(0);
         System.out.println(department);
         System.out.println(department.getDepartmentName());
 
