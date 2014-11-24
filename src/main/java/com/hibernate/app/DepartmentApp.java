@@ -4,6 +4,7 @@ import com.hibernate.annotation.entity.Department;
 import com.hibernate.annotation.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 /**
@@ -22,21 +23,23 @@ public class DepartmentApp {
 
 //        new SchemaExport(configure).create(true, true);
 
-//        Session session = sessionFactory.openSession();
-//        Transaction transaction = session.beginTransaction();
-//        transaction.begin();
-
-
         Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        transaction.begin();
 
-        Department department = (Department) session.get(Department.class, 1);
-        System.out.println("Department [id = "+ department.getId() + ", name = " + department.getDepartmentName() + "]");
+
+//        Session session = sessionFactory.openSession();
 
 //        session.save(new Department("IT"));
 //        session.save(new Department("HR"));
 
 
-//        transaction.commit();
+        Department department = (Department) session.get(Department.class, 1);
+        System.out.println("Department [id = "+ department.getId() + ", name = " + department.getDepartmentName() + "]");
+
+
+
+        transaction.commit();
         session.close();
     }
 }

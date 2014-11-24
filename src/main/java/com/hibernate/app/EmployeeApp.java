@@ -43,7 +43,7 @@ public class EmployeeApp {
 
         EmployeeApp app = new EmployeeApp();
         app.insert();
-//        app.update(1);
+        app.update(1);
 //        app.delete(1);
 //        app.getByPk();
 //        app.queryWithCriteria();
@@ -58,9 +58,9 @@ public class EmployeeApp {
         map.put("lastName", "Sutton");
         app.queryWithCriteriaByMap(map);*/
 
-//        app.queryWithNameQuery();
+        app.queryWithNameQuery();
           app.queryWithNativeQuery();
-//        app.queryWithNameQueryByFirstName("Damian");
+        app.queryWithNameQueryByFirstName("Damian");
 
     }
 
@@ -235,6 +235,7 @@ public class EmployeeApp {
         //Update Employee
         Employee employee = (Employee) session.get(Employee.class, id);
         employee.setFirstName("John has update");
+        employee.setUpdateDateTime(new Date());
         session.update(employee);
         transaction.commit();
         session.close();
